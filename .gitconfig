@@ -1,0 +1,27 @@
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	pager = true
+
+[alias]
+	meld = !~/.tools/git-meld/git-meld.pl
+	bname = !basename $(git symbolic-ref HEAD)
+    bnames = submodule foreach git bname ||:
+	logl = log --no-merges --date=short --pretty=\"%Cblue%h%Creset %cd %Cgreen%cE%Creset %Cred%s%Creset\"
+	logg = log --date=short --pretty=\"%Cblue%h%Creset %cd %Cgreen%cE%Creset %Cred%s%Creset\"
+	logx = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	ls = ls-files --full-name -t -dmock --exclude-standard
+	shat = show --stat
+	alias = config --global --get-regexp "alias.*"
+	justchanged = log --date=short --pretty=\"%Cblue%h%Creset %cd %Cgreen%cE%Creset %Cred%s%Creset\" ORIG_HEAD..HEAD
+	sgrep = "!f() { git grep \"$1\"|grep \"$1\"; git submodule foreach \"git grep '$1'; true\" | grep -B 1 \"$1\"; }; f"
+[user]
+	name = Pawel Krolikowski
+	email = pawel@uber.com
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/
