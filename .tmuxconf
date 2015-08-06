@@ -25,10 +25,6 @@ source /Users/pawel/Uber/uber-engi-dotfiles/raja/.vim/bundle/powerline/powerline
 # Esc. fixes insert mode exit lag in vim
 set -sg escape-time 0
 
-# bind-key C-l run-shell "gnome-screensaver-command -l ; dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify
-# /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop > /dev/null"
-
-
 # Reload key
 bind r source-file ~/.tmux.conf
 
