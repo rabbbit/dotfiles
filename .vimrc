@@ -298,7 +298,7 @@ au BufNewFile,BufRead *.py iab esql odb.execute_sql
 au BufNewFile,BufRead *.py iab esto odb.execute
 au BufNewFile,BufRead *.py iab epro odb.execute_proc
 au BufNewFile,BufRead *.py iab efun odb.execute_func
-au BufNewFile,BufRead *.py iab ipdb import ipdb; ipdb.set_trace();
+au BufNewFile,BufRead *.py iab ipdb import pytest; pytest.set_trace();
 
 "------------------
 " JAVASCRIPT

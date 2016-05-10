@@ -34,3 +34,5 @@ set -g visual-activity on
 
 # set -g default-terminal 'screen-it'
 # set -g default-terminal 'builtin_ansi'
+
+bind c new-window -c '#{pane_current_path}' # Create new window
