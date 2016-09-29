@@ -244,7 +244,7 @@ nnoremap <leader>tc :set cursorline!<cr>:set cursorcolumn!<cr>
 "syntastic
 nnoremap <F6> :Errors<cr>
 " let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-let g:syntastic_python_checkers = ['pep8']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_pep8_args = '--max-line-length=100'
 let g:syntastic_python_flake8_args = '--max-line-length=100'
 
@@ -534,6 +534,7 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'taglist.vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'avakhov/vim-yaml'
+Plugin 'fatih/vim-go'
         
 " non github repos
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -552,6 +553,8 @@ filetype plugin indent on     " required!
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Plugin command are not allowed..
  "
+
+let g:ctrlp_working_path_mode = 'r'
 
 " taglist vim config
 "
@@ -608,9 +611,6 @@ highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+\%#\@<!$/
 " :match ExtraWhitespace /\s\+$/ 
 " don't show when im typing? 
-
-
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
 if &term =~ '256color'

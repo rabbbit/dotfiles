@@ -130,3 +130,5 @@ set -o vi
 #tmux
 alias tmux="TERM=xterm-256color tmux"
 alias ssh='TERM=xterm ssh'
+
+PROJECT_HOME="/Users/pawel/Uber/"
