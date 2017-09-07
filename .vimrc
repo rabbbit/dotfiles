@@ -530,6 +530,7 @@ Plugin 'jnurmine/Zenburn'
 Plugin 'eiginn/netrw'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'godlygeek/tabular'
 " vim-scripts repos
 Plugin 'taglist.vim'
 Plugin 'jmcantrell/vim-virtualenv'
@@ -665,3 +666,12 @@ endif
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0
 let g:jedi#use_tabs_not_buffers = 1
+
+
+" go
+"
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+" Automagically run goimports on save
+let g:go_fmt_command = "goimports"
+" Run lint and vet on save
+let g:go_metalinter_autosave = 1
