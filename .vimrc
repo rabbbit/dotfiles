@@ -27,7 +27,7 @@ set backup " enable backups
 " to see where a mapping was made, can run :verbose map (for all commands) or
 " :verbose map <cmd> - see :help map-listing
 "
-set guifont=Monospace\ 9
+" set guifont=Monospace\ 9
 
 set backspace=2
 let mapleader=","
@@ -85,6 +85,7 @@ set splitright
 
 " change directory automatically (the current directory will be that of the current buffer)
 set autochdir
+autocmd BufEnter * silent! lcd %:p:h
 
 " filename auto completion
 " set wildmode=longest:full

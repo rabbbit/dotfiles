@@ -133,6 +133,11 @@ alias ssh='TERM=xterm ssh'
 
 PROJECT_HOME="/Users/pawel/Uber/"
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-fi
+# if [[ "$OSTYPE" == "darwin"* ]]; then
+#   alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+# fi
+
+
+export WORKON_HOME=$HOME/.virtualenvs
+#source /Users/Pawel/Library/Python/2.7/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
