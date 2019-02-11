@@ -8,9 +8,6 @@ execute pathogen#helptags()
 filetype plugin indent on
 syntax on
 
-set path=.,,./**,$MYGITROOT/sportsbook/**,$MYGITROOT/**,$HOME/**
-set cdpath=.,,$CDPATH
-
 set viminfo='500,f1,<500,:200,@200,/200,c,%
 
 set background=dark
@@ -103,7 +100,7 @@ set nostartofline
 " line of a window
 set ruler
 
-set textwidth=100
+set textwidth=120
 set colorcolumn=+1
 highlight ColorColumn guibg=#2d2d2d ctermbg=246
 
@@ -246,8 +243,8 @@ nnoremap <leader>tc :set cursorline!<cr>:set cursorcolumn!<cr>
 nnoremap <F6> :Errors<cr>
 " let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_pep8_args = '--max-line-length=100'
-let g:syntastic_python_flake8_args = '--max-line-length=100'
+let g:syntastic_python_pep8_args = '--max-line-length=120'
+let g:syntastic_python_flake8_args = '--max-line-length=120'
 
 " taglist.vim
 nnoremap <silent> <F7> :TlistToggle<CR>
@@ -524,7 +521,7 @@ Plugin 'gmarik/vundle'
 " original repos on github
 Plugin 'tpope/vim-pathogen'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'jnurmine/Zenburn'
@@ -537,6 +534,9 @@ Plugin 'taglist.vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'avakhov/vim-yaml'
 Plugin 'fatih/vim-go'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'ryanoasis/vim-devicons'
         
 " non github repos
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -676,3 +676,20 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 let g:go_fmt_command = "goimports"
 " Run lint and vet on save
 let g:go_metalinter_autosave = 1
+set autowrite
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" NERDTree open tree automatically if no files specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" vim-devicons, needed for nerdtree-syntax-highlight
+" brew tap caskroom/fonts
+" brew cask install font-droidsansmono-nerd-font-mono
+" manually update terminal font, the below doesn't work
+"
+set encoding=UTF-8
+set guifont=DroidSansMono_Nerd_Font:h11
+
