@@ -141,3 +141,12 @@ PROJECT_HOME="/Users/pawel/Uber/"
 export WORKON_HOME=$HOME/.virtualenvs
 #source /Users/Pawel/Library/Python/2.7/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper.sh
+[ -r /Users/pawel/.profile_lda ] && . /Users/pawel/.profile_lda
+
+# eval "$(fasd --init auto)"
+fasd_cache="$HOME/.fasd-init-bash"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+      fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
