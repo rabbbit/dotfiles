@@ -691,5 +691,14 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " manually update terminal font, the below doesn't work
 "
 set encoding=UTF-8
-set guifont=DroidSansMono_Nerd_Font:h11
+set guifont=DroidSansMono_Nerd_Font_Mono:h11
 
+
+" fixes for slow scrolling in golang
+" https://github.com/fatih/vim-go/issues/706
+set re=1
+set ttyfast
+set lazyredraw
+
+set synmaxcol=128
+syntax sync minlines=255
