@@ -141,7 +141,7 @@ PROJECT_HOME="/Users/pawel/Uber/"
 export WORKON_HOME=$HOME/.virtualenvs
 #source /Users/Pawel/Library/Python/2.7/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper.sh
-[ -r /Users/pawel/.profile_lda ] && . /Users/pawel/.profile_lda
+# [ -r /Users/pawel/.profile_lda ] && . /Users/pawel/.profile_lda
 
 # eval "$(fasd --init auto)"
 fasd_cache="$HOME/.fasd-init-bash"
@@ -150,3 +150,5 @@ if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
 fi
 source "$fasd_cache"
 unset fasd_cache
+
+eval "$(direnv hook bash)"
