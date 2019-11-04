@@ -25,3 +25,5 @@
 	enabled = true
 [url "ssh://git@github.com/uber/"]
 	insteadOf = https://github.com/uber/
+[log]
+    date = iso-local
