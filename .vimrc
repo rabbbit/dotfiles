@@ -531,7 +531,6 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'godlygeek/tabular'
 " vim-scripts repos
 Plugin 'taglist.vim'
-Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'avakhov/vim-yaml'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
@@ -540,7 +539,6 @@ Plugin 'ryanoasis/vim-devicons'
         
 " non github repos
 " Plugin 'git://git.wincent.com/command-t.git'
-" Plugin 'git://github.com/scrooloose/syntastic.git'
 " Plugin 'bling/vim-airline'
 
 call vundle#end()  
@@ -702,3 +700,4 @@ set lazyredraw
 
 set synmaxcol=128
 syntax sync minlines=255
+let $USE_SYSTEM_GO=1
