@@ -13,11 +13,6 @@ set viminfo='500,f1,<500,:200,@200,/200,c,%
 set background=dark
 syntax enable " 
 
-" backup options
-set backupdir=~/tmp,/tmp " backups (~)
-set directory=~/tmp,/tmp " swap files
-set backup " enable backups
-
 " map notes
 " in insert mode <c-o> (<C-O>) changes into command mode for a single command
 " so imap abc <c-o>do_thing allows a single command to work in insert mode.
@@ -114,15 +109,8 @@ noremap <Up> gk
 
 " Disable annoyances
 "
-" Shamed into reneabling q macros by Farmer and Oli
-" " disable annoying 'q' command until I understand what it does properly
-" noremapq ""
-"
 " This one enters ex mode.
 nmap Q ""
-
-" underscore as word delimiter
-" set iskeyword-=_
 
 " Y should yank to the end of the line
 noremap Y y$
@@ -155,25 +143,7 @@ nnoremap <s-tab> <c-w>w
 " filetype plugin on
 
 " create ctags
-map <C-f12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-" no automatic popup for '.', '->'
-let OmniCpp_MayCompleteDot = 0
-let OmniCpp_MayCompleteArrow = 0
-" other stuff
-let OmniCpp_LocalSearchDecl = 1
-let OmniCpp_ShowPrototypeInAbbr = 1
-" close preview window automatically
-"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" use STL sources using the _GLIBCXX_STD macro
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-
-" use system-wide tags created with
-" ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -o ~/system.tags /usr/include
-"set tags+=~/system.tags
-set tags=./tags;
-set tags+=~/git/PROJ-Coral/tags;
+" map <C-f12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 highlight CursorLine term=reverse cterm=NONE ctermbg=7 guibg=LightRed
 highlight CursorColumn term=reverse cterm=NONE ctermbg=7 guibg=DarkMagenta
@@ -182,31 +152,12 @@ highlight CursorColumn term=reverse cterm=NONE ctermbg=7 guibg=DarkMagenta
 " vim-recipes
 nnoremap gf <C-W>gf
 
-" git
-" http://michaelxavier.net/Git-vim-bindings-for-fugitive-vim.html
-"rebind my favorite commands from Git.vim for Fugitive
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>ga :Gwrite<cr>
-nmap <leader>gl :Glog<cr>
-nmap <leader>gd :Gdiff<cr>
-nmap <leader>gb :Gblame<cr>
-
-
 " printing options
 " vim-recipes - 35
 " ':hardcopy' prints
 " see also, discussion on cups-pdf and printing to pdf using :set pdev=pdf
 set printoptions=paper:A4,syntax:y,wrap:y
 
-" http://vim.wikia.com/wiki/Python_-_check_syntax_and_run_script
-autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-autocmd BufRead *.py nmap <c-F5> :!python %<CR>
-
-" whitespace tabs
-" TODO: do something in visual mode
-"
 " Insert tabs at the start of the line [in insert mode]
 inoremap <Tab> <C-T>
 " shift-tab to remove tabs (indentation) [in insert mode]
@@ -231,7 +182,6 @@ nmap <F4> <leader>tp
 imap <F4> <C-O><leader>tp
 set pastetoggle=<F4>
 
-
 " buffers - show with F5
 noremap <F5> :ls!<CR>
 
@@ -245,23 +195,6 @@ nnoremap <F6> :Errors<cr>
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_pep8_args = '--max-line-length=120'
 let g:syntastic_python_flake8_args = '--max-line-length=120'
-
-" taglist.vim
-nnoremap <silent> <F7> :TlistToggle<CR>
-
-" registers - show with F6
-"noremap <F6> :reg<CR>
-" tags - show with F7
-" not that useful!
-" noremap <F7> :tags<CR>
-
-" F7 gdiff
-"nmap <F7> <leader>gd
-"imap <F7> <C-O><leader>gd
-"
-" F8 gblame
-nmap <F8> <leader>gb
-"imap <F8> <C-O><leader>gb<cr>
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
@@ -331,42 +264,6 @@ let g:screen_size_by_vim_instance = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
@@ -393,65 +290,6 @@ endfunction
 "autocmd VIMEnter * :source ~/.session.vim
 
 "autocmd VIMLeave * :mksession! ~/.session.vim
-
-if has("gui_running")
-  function! ScreenFilename()
-    if has('amiga')
-      return "s:.vimsize"
-    elseif has('win32')
-      return $HOME.'\_vimsize'
-    else
-      return $HOME.'/.vimsize'
-    endif
-  endfunction
-
-  function! ScreenRestore()
-    " Restore window size (columns and lines) and position
-    " from values stored in vimsize file.
-    " Must set font first so columns and lines are based on font size.
-    let f = ScreenFilename()
-    if has("gui_running") && g:screen_size_restore_pos && filereadable(f)
-      let vim_instance = (g:screen_size_by_vim_instance==1?(v:servername):'GVIM')
-      for line in readfile(f)
-        let sizepos = split(line)
-        if len(sizepos) == 5 && sizepos[0] == vim_instance
-          silent! execute "set columns=".sizepos[1]." lines=".sizepos[2]
-          silent! execute "winpos ".sizepos[3]." ".sizepos[4]
-          return
-        endif
-      endfor
-    endif
-  endfunction
-
-  function! ScreenSave()
-    " Save window size and position.
-    if has("gui_running") && g:screen_size_restore_pos
-      let vim_instance = (g:screen_size_by_vim_instance==1?(v:servername):'GVIM')
-      let data = vim_instance . ' ' . &columns . ' ' . &lines . ' ' .
-            \ (getwinposx()<0?0:getwinposx()) . ' ' .
-            \ (getwinposy()<0?0:getwinposy())
-      let f = ScreenFilename()
-      if filereadable(f)
-        let lines = readfile(f)
-        call filter(lines, "v:val !~ '^" . vim_instance . "\\>'")
-        call add(lines, data)
-      else
-        let lines = [data]
-      endif
-      call writefile(lines, f)
-    endif
-  endfunction
-
-  if !exists('g:screen_size_restore_pos')
-    let g:screen_size_restore_pos = 1
-  endif
-  if !exists('g:screen_size_by_vim_instance')
-    let g:screen_size_by_vim_instance = 1
-  endif
-  autocmd VimEnter * if g:screen_size_restore_pos == 1 | call ScreenRestore() | endif
-  autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call ScreenSave() | endif
-endif
-
 
 " option name default optional ------------------------------------------------ 
 " g:solarized_termcolors= 16 | 256 
@@ -501,10 +339,8 @@ nnoremap <leader><space> :noh<cr>
 
 inoremap jj <ESC>
 
-
 " don't hold onto old fugitive buffers http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 au BufReadPost fugitive://* set bufhidden=delete
-
 
 " VUNDLE config: https://github.com/gmarik/vundle
 "
@@ -514,7 +350,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " My Plugins here:
 "
@@ -529,13 +365,13 @@ Plugin 'eiginn/netrw'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'godlygeek/tabular'
-" vim-scripts repos
-Plugin 'taglist.vim'
 Plugin 'avakhov/vim-yaml'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'solarnz/thrift.vim'
+Plugin 'neoclide/coc.nvim'
         
 " non github repos
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -554,48 +390,14 @@ filetype plugin indent on     " required!
  " NOTE: comments after Plugin command are not allowed..
  "
 
-let g:ctrlp_working_path_mode = 'r'
-
-" taglist vim config
-"
-" close if only tlist is open
-let Tlist_Exit_OnlyWindow = 1
-
-" close tags for inactive windows
-let Tlist_File_Fold_Auto_Close = 1
-
-" single click to select tag
-" let Tlist_Use_SingleClick = 1
-
-" taglist is a little too narrow ( default 30 )
-let Tlist_WinWidth = 40
-
-" gain focus when tlist is opened
-let Tlist_GainFocus_On_ToggleOpen = 1
-
-" display prototype
-let Tlist_Display_Prototype = 1
-
-" disable fold column (?)
-let Tlist_Enable_Fold_Column = 1
-
-" try make it update tags a little faster ( do not set in lower than 1 sec)
-setlocal updatetime=4000
-
-" use right window
-let Tlist_Use_Right_Window = 0
-
 " limit autocompletion scanning
 set complete=.,w,b,u,t
-
-
 
 "folding settings
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
-
 
 nnoremap <space> za
 
@@ -604,7 +406,6 @@ vnoremap <space> zf
 set titleold=""
 set titlestring=VIM:\%F
 
-
 " match extra whitespace 
 " show extra whitespace
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
@@ -612,14 +413,12 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 " :match ExtraWhitespace /\s\+$/ 
 " don't show when im typing? 
 
-
 if &term =~ '256color'
  " disable Background Color Erase (BCE) so that color schemes
  " render properly when inside 256-color tmux and GNU screen.
  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
 	set t_ut=
 endif
-
 
 if &term =~ '^screen' && exists('$TMUX')
     set mouse+=a
@@ -671,9 +470,14 @@ let g:jedi#use_tabs_not_buffers = 1
 "
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 " Automagically run goimports on save
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command="goimports"
 " Run lint and vet on save
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 0
+" let g:go_metalinter_enabled = ['deadcode', 'errcheck', 'gosimple', 'govet', 'staticcheck', 'typecheck', 'unused', 'varcheck']
+" let g:go_metalinter_command='golangci-lint run --print-issued-lines=false --disable-all --exclude-use-default=false'
+" let g:go_metalinter_command='gometalinter'
+" let g:go_list_type = 'locationlist'
+
 set autowrite
 
 " NERDTree
@@ -700,11 +504,161 @@ set lazyredraw
 
 set synmaxcol=128
 syntax sync minlines=255
-let $USE_SYSTEM_GO=1
+
+" ctrlp 
+let g:ctrlp_working_path_mode = 'r'
 
 let g:ctrlp_max_files=0
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" if executable('ag')
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -ga ""'
+" endif
+
+let g:ctrlp_root_markers = ['.ctrlp']
+
+
+" vimgopathmode for monorepo, I think
+if $GO_BIN_PATH != ""
+   let g:go_bin_path=$GO_BIN_PATH
 endif
+
+
+" COC.VIM
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
+
+let g:ctrlp_root_markers = ['.ctrlp']
+
+let g:coc_global_extensions = ["coc-go", "coc-yaml", "coc-json"]
