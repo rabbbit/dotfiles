@@ -502,7 +502,7 @@ set re=1
 set ttyfast
 set lazyredraw
 
-set synmaxcol=128
+set synmaxcol=160
 syntax sync minlines=255
 
 " ctrlp 
