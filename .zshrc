@@ -1,4 +1,4 @@
-PROMPT='%F{blue}%~%f $ '
+PROMPT='%F{green}%m %F{blue}%~%f $ '
 eval "$(direnv hook zsh)"
 
 bindkey -v
