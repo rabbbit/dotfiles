@@ -662,3 +662,5 @@ let g:go_def_mapping_enabled = 0
 let g:ctrlp_root_markers = ['.ctrlp']
 
 let g:coc_global_extensions = ["coc-go", "coc-yaml", "coc-json"]
+
+let g:coc_node_path = "/usr/local/bin/node"
