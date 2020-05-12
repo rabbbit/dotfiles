@@ -17,6 +17,10 @@ export HISTCONTROL=ignoreboth
 # Save every command before it is executed:
 setopt inc_append_history
 # Retrieve the history file every time history is called upon.
-setopt share_history
+# setopt share_history
 # Do not save duplicates in the history
 setopt hist_ignore_all_dups
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
