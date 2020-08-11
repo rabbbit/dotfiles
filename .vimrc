@@ -664,3 +664,35 @@ let g:ctrlp_root_markers = ['.ctrlp']
 let g:coc_global_extensions = ["coc-go", "coc-yaml", "coc-json"]
 
 let g:coc_node_path = "/usr/local/bin/node"
+
+let g:ctrlp_user_command = ['.git/', 'git ls-files --cached --others  --exclude-standard %s']
+
+" sourcegraph
+function! GetSourcegraphURL(config) abort
+    if a:config['remote'] =~ "^gitolite@code.uber.internal"
+        let repository = substitute(matchstr(a:config['remote'], 'code.uber.internal.*'), ':', '/', '')
+        let commit = a:config['commit']
+        let path = a:config['path']
+        let url = printf("https://sourcegraph.uberinternal.com/%s@%s/-/blob/%s",
+            \ repository,
+            \ commit,
+            \ path)
+        let fromLine = a:config['line1']
+        let toLine = a:config['line2']
+        if fromLine > 0 && fromLine == toLine
+            let url .= '#L' . fromLine
+        elseif toLine > 0
+            let url .= '#L' . fromLine . '-' . toLine
+        endif
+        return url
+    endif
+    return ''
+endfunction
+if !exists('g:fugitive_browse_handlers')
+    let g:fugitive_browse_handlers = []
+endif
+if index(g:fugitive_browse_handlers, function('GetSourcegraphURL')) < 0
+    call insert(g:fugitive_browse_handlers, function('GetSourcegraphURL'))
+endif
+
+autocmd BufNewFile,BufRead *.star,*.bzl,*.bazel set filetype=python syntax=python ts=4 shiftwidth=4
