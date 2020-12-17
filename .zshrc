@@ -37,6 +37,7 @@ setopt hist_ignore_all_dups
 alias cdobs="cd ~/go-code/src/code.uber.internal/infra/swn-observer"
 alias cduns="cd ~/go-code/src/code.uber.internal/infra/uns"
 alias cdmut="cd ~/go-code/src/code.uber.internal/rpc/muttley"
+alias cdcon="cd ~/go-code/config/infra/starlark/teams/swn"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
