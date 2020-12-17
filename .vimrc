@@ -13,14 +13,6 @@ set viminfo='500,f1,<500,:200,@200,/200,c,%
 set background=dark
 syntax enable
 
-" map notes
-" in insert mode <c-o> (<C-O>) changes into command mode for a single command
-" so imap abc <c-o>do_thing allows a single command to work in insert mode.
-" to see where a mapping was made, can run :verbose map (for all commands) or
-" :verbose map <cmd> - see :help map-listing
-"
-" set guifont=Monospace\ 9
-
 set backspace=2
 let mapleader=","
 
@@ -29,8 +21,6 @@ nnoremap <c-a> ggVG
 
 " show the status bar
 set laststatus=2
-" set title
-" set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-39(bytval=0x%B,%n%Y%)\%P
 set statusline=%<%f\%h%m%r\ %{fugitive#statusline()}%=%-10.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
 
 " not interested in editing pyc files
@@ -40,14 +30,8 @@ set suffixes+=.pyc
 set mouse=a
 
 " indenting
-" set smartindent
-" set autoindent
 filetype on
 filetype plugin indent on
-
-" to disable automatic commenting
-"
-" au FileType * setl fo-=cro
 
 set ic " ignore case in search
 set incsearch " incremental search
@@ -67,10 +51,6 @@ set showcmd
 set tabstop=4
 set shiftwidth=4
 set expandtab
-" expandtab inserts tabs instead of spaces
-" set expandtab
-" smarttab changes spaces inserted at the start of a line when tabbing
-" set smarttab
 
 " open new windows on the right
 set splitright
@@ -118,33 +98,6 @@ noremap Y y$
 "Replace current selection with buffer
 vmap r "_dP
 
-" Cycle through windows with F6 (and back with Shift-F6
-" nnoremap <F6> <C-W>w
-" nnoremap <S-F6> <C-W>W
-
-" Cycle through open files with Ctrl-N and Ctrl-P
-" nnoremap <C-N> :next<CR>
-" nnoremap <C-P> :prev<CR>
-
-" tab navigation with alt left / alt right
-nnoremap  <a-right>  gt
-inoremap  <a-right>  <c-o>gt
-nnoremap  <a-left>   gT
-inoremap  <a-left>   <c-o>gT
-
-" can't remap tab - it also remaps <ctrl-I>
-" window cycling with tab
-nnoremap <s-tab> <c-w>w
-
-" ctags tutorial
-" http://www.vim.org/tips/tip.php?tip_id=94
-" omnicpp auto completion
-" http://www.vim.org/scripts/script.php?script_id=1520
-" filetype plugin on
-
-" create ctags
-" map <C-f12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
 highlight CursorLine term=reverse cterm=NONE ctermbg=7 guibg=LightRed
 highlight CursorColumn term=reverse cterm=NONE ctermbg=7 guibg=DarkMagenta
 
@@ -152,19 +105,12 @@ highlight CursorColumn term=reverse cterm=NONE ctermbg=7 guibg=DarkMagenta
 " vim-recipes
 nnoremap gf <C-W>gf
 
-" printing options
-" vim-recipes - 35
-" ':hardcopy' prints
-" see also, discussion on cups-pdf and printing to pdf using :set pdev=pdf
-set printoptions=paper:A4,syntax:y,wrap:y
-
 " Insert tabs at the start of the line [in insert mode]
 inoremap <Tab> <C-T>
 " shift-tab to remove tabs (indentation) [in insert mode]
 inoremap <S-Tab> <C-D>
 
 " Function Key Mappings
-
 " open this on F1
 map <F1> :vnew ~/.vimrc<CR>
 
@@ -258,23 +204,6 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-"set sessionoptions+=resize,winpos
-
-"autocmd VIMEnter * :source ~/.session.vim
-
-"autocmd VIMLeave * :mksession! ~/.session.vim
-
-" option name default optional ------------------------------------------------ 
-" g:solarized_termcolors= 16 | 256 
-" g:solarized_termtrans = 0 | 1 
-" g:solarized_degrade = 0 | 1 
-" g:solarized_bold = 1 | 0 
-" g:solarized_underline = 1 | 0 
-" g:solarized_italic = 1 | 0
-" g:solarized_contrast = "normal"| "high" or "low" 
-" g:solarized_visibility= "normal"| "high" or "low"
-" ------------------------------------------------
-
 set t_Co=256
 set cursorline cursorcolumn
 let g:zenburn_unified_CursorColumn = 1
@@ -285,19 +214,10 @@ let g:zenburn_enable_TagHighlight=1
 
 colors zenburn
 
-"#g:solarized_contrast = "high" 
-"#g:solarized_visibility= "high"
-"#colors solarized
-
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
-
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
 
 " Allow moving cursor past end of line in visual block mode:
 set virtualedit+=block
@@ -315,9 +235,9 @@ inoremap jj <ESC>
 " don't hold onto old fugitive buffers http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 au BufReadPost fugitive://* set bufhidden=delete
 
-" vim-plug  
+" vim-plug
 "
-filetype off 
+filetype off
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -344,7 +264,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'solarnz/thrift.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        
+
 call plug#end()
 
 filetype plugin indent on     " required!
@@ -365,12 +285,10 @@ vnoremap <space> zf
 set titleold=""
 set titlestring=VIM:\%F
 
-" match extra whitespace 
+" match extra whitespace
 " show extra whitespace
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+\%#\@<!$/
-" :match ExtraWhitespace /\s\+$/ 
-" don't show when im typing? 
 
 if &term =~ '256color'
  " disable Background Color Erase (BCE) so that color schemes
@@ -412,9 +330,6 @@ if &term =~ '^screen' && exists('$TMUX')
     map! <Esc>OF <End>
     imap <Esc>OF <End>
 endif
-
-" get rid of delay when exiting command mode
-" set timeoutlen=1000
 
 " gvim does it automatically ...
 :au FileChangedShell * echo "Warning: File changed on disk"
@@ -464,7 +379,7 @@ set lazyredraw
 set synmaxcol=160
 syntax sync minlines=255
 
-" ctrlp 
+" ctrlp
 let g:ctrlp_working_path_mode = 'r'
 
 let g:ctrlp_max_files=0
@@ -475,7 +390,6 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 " endif
 
 let g:ctrlp_root_markers = ['.ctrlp']
-
 
 " vimgopathmode for monorepo, I think
 if $GO_BIN_PATH != ""
