@@ -34,10 +34,27 @@ setopt hist_ignore_all_dups
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+alias cdcon="cd ~/go-code/config/infra/starlark/teams/swn"
+alias cdico="cd ~/Uber/config/net/traffic"
+alias cdmut="cd ~/go-code/src/code.uber.internal/rpc/muttley"
+alias cdmtf="cd ~/go-code/src/code.uber.internal/rpc/mtf"
+alias cdwom="cd ~/go-code/src/code.uber.internal/rpc/womf"
+alias cdmco="cd ~/go-code/src/code.uber.internal/rpc/muttley-config"
 alias cdobs="cd ~/go-code/src/code.uber.internal/infra/swn-observer"
 alias cduns="cd ~/go-code/src/code.uber.internal/infra/uns"
-alias cdmut="cd ~/go-code/src/code.uber.internal/rpc/muttley"
-alias cdcon="cd ~/go-code/config/infra/starlark/teams/swn"
+
+alias gb="git branch"
+alias gbd="git branch -D"
+alias gco="git checkout"
+alias gd="git diff"
+alias gst="git status"
+alias gsh="git show"
+alias gr="git rebase"
+alias gsc="git sparse-checkout"
+
+alias zrf="source ~/dotfiles/.zshrc"
+alias zshrc="vim ~/dotfiles/.zshrc"
+
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

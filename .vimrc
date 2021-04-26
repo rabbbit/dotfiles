@@ -351,6 +351,8 @@ let g:go_metalinter_autosave = 0
 " let g:go_metalinter_command='golangci-lint run --print-issued-lines=false --disable-all --exclude-use-default=false'
 " let g:go_metalinter_command='gometalinter'
 " let g:go_list_type = 'locationlist'
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 set autowrite
 
