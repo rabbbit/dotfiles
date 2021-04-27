@@ -2,8 +2,8 @@ set nocompatible
 
 filetype off
 
-execute pathogen#infect()
-execute pathogen#helptags()
+" execute pathogen#infect()
+" execute pathogen#helptags()
 
 filetype plugin indent on
 syntax on
@@ -203,16 +203,6 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
-
-set t_Co=256
-set cursorline cursorcolumn
-let g:zenburn_unified_CursorColumn = 1
-let g:zenburn_high_Contrast=0
-let g:zenburn_alternate_Visual = 1
-let g:zenburn_old_Visual = 0
-let g:zenburn_enable_TagHighlight=1
-
-colors zenburn
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -606,3 +596,14 @@ if index(g:fugitive_browse_handlers, function('GetSourcegraphURL')) < 0
 endif
 
 autocmd BufNewFile,BufRead *.star,*.bzl,*.bazel set filetype=python syntax=python ts=4 shiftwidth=4
+
+set t_Co=256
+set cursorline cursorcolumn
+let g:zenburn_unified_CursorColumn = 1
+let g:zenburn_high_Contrast=0
+let g:zenburn_alternate_Visual = 1
+let g:zenburn_old_Visual = 0
+let g:zenburn_enable_TagHighlight=1
+
+colors zenburn
+
