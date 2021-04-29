@@ -247,11 +247,10 @@ Plug 'eiginn/netrw'
 Plug 'davidhalter/jedi-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'godlygeek/tabular'
-Plug 'avakhov/vim-yaml'
+" Plug 'avakhov/vim-yaml'
 Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'solarnz/thrift.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
