@@ -15,6 +15,8 @@ export UBER_OWNER='pawel@uber.com'
 
 brew analytics off 2>&1 >/dev/null
 export PATH=/Users/pawel/bin:$PATH
+export PATH=/Users/pawel/go-code/src/code.uber.internal/swn/scripts/:$PATH
+
 
 export EDITOR='vim'
 
@@ -34,6 +36,8 @@ setopt hist_ignore_all_dups
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+
+alias cdalb="cd ~/go-code/src/code.uber.internal/rpc/assistedlb"
 alias cdcon="cd ~/go-code/config/infra/starlark/teams/swn"
 alias cdico="cd ~/Uber/config/net/traffic"
 alias cdmut="cd ~/go-code/src/code.uber.internal/rpc/muttley"

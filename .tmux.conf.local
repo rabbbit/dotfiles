@@ -20,7 +20,7 @@
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -327,7 +327,7 @@ tmux_conf_copy_to_os_clipboard=false
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 50000
 
 # start with mouse mode enabled
 #set -g mouse on
@@ -411,3 +411,8 @@ bind r source-file ~/.tmux.conf
 bind-key -n S-right next
 bind-key -n S-left prev
 
+# for an escape sequence after hitting
+# Esc. fixes insert mode exit lag in vim
+set -sg escape-time 0
+
+bind c new-window -c "#{pane_current_path}"
