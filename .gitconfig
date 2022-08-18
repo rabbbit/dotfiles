@@ -3,7 +3,6 @@
 	diff = auto
 	status = auto
 	pager = true
-
 [alias]
 	meld = !~/.tools/git-meld/git-meld.pl
 	bname = !basename $(git symbolic-ref HEAD)
@@ -23,7 +22,25 @@
 	autosetuprebase = always
 [rerere]
 	enabled = true
-[url "ssh://git@github.com/uber/"]
-	insteadOf = https://github.com/uber/
 [log]
     date = iso-local
+[url "ssh://gitolite@code.uber.internal/"]
+	insteadOf = git://code.uber.internal/
+[credential "https://git.uberinternal.com"]
+	helper = usso
+[credential]
+	helper = osxkeychain
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/
+[credential "https://vfs4g-cache.uberinternal.com"]
+	helper = usso
+[http "https://gopkg.uberinternal.com"]
+	followRedirects = true
+[http "https://gopkg.in"]
+	followRedirects = true
+[pull]
+	ff = only
+[url "ssh://git@github.com/uber/"]
+	insteadof = https://github.com/uber/

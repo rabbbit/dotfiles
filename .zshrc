@@ -1,3 +1,5 @@
+eval "$(direnv hook zsh)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,7 +8,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 PROMPT='%F{green}%m %F{blue}%~%f $ '
-eval "$(direnv hook zsh)"
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
@@ -15,7 +16,9 @@ export UBER_OWNER='pawel@uber.com'
 
 brew analytics off 2>&1 >/dev/null
 export PATH=/Users/pawel/bin:$PATH
+export PATH=/Users/pawel/go/bin:$PATH
 export PATH=/Users/pawel/go-code/src/code.uber.internal/swn/scripts/:$PATH
+export PATH=/Users/pawel/go-code/config/infra/starlark/scripts/:$PATH
 
 
 export EDITOR='vim'
@@ -51,6 +54,7 @@ alias gb="git branch"
 alias gbd="git branch -D"
 alias gco="git checkout"
 alias gd="git diff"
+alias gs="git status"
 alias gst="git status"
 alias gsh="git show"
 alias gr="git rebase"
@@ -85,3 +89,5 @@ alias l='ls -CF'
 
 alias ggrep='git grep -ni'
 alias sgrep='git sgrep'
+
+export XDG_RUNTIME_DIR="/Users/pawel/tmp"
