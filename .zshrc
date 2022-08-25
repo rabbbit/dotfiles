@@ -1,4 +1,4 @@
-eval "$(direnv hook zsh)"
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -6,6 +6,8 @@ eval "$(direnv hook zsh)"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 PROMPT='%F{green}%m %F{blue}%~%f $ '
 
@@ -40,15 +42,17 @@ setopt hist_ignore_all_dups
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 
-alias cdalb="cd ~/go-code/src/code.uber.internal/rpc/assistedlb"
-alias cdcon="cd ~/go-code/config/infra/starlark/teams/swn"
 alias cdico="cd ~/Uber/config/net/traffic"
-alias cdmut="cd ~/go-code/src/code.uber.internal/rpc/muttley"
-alias cdmtf="cd ~/go-code/src/code.uber.internal/rpc/mtf"
-alias cdwom="cd ~/go-code/src/code.uber.internal/rpc/womf"
-alias cdmco="cd ~/go-code/src/code.uber.internal/rpc/muttley-config"
-alias cdobs="cd ~/go-code/src/code.uber.internal/infra/swn-observer"
-alias cduns="cd ~/go-code/src/code.uber.internal/infra/uns"
+alias cdgco="cd ~/Uber/go-code"
+alias cdalb="cd ~/Uber/go-code/src/code.uber.internal/rpc/assistedlb"
+alias cdcon="cd ~/Uber/go-code/config/infra/starlark/teams/swn"
+alias cdmut="cd ~/Uber/go-code/src/code.uber.internal/rpc/muttley"
+alias cdmtf="cd ~/Uber/go-code/src/code.uber.internal/rpc/mtf"
+alias cdwom="cd ~/Uber/go-code/src/code.uber.internal/rpc/womf"
+alias cdmco="cd ~/Uber/go-code/src/code.uber.internal/rpc/muttley-config"
+alias cdobs="cd ~/Uber/go-code/src/code.uber.internal/infra/swn-observer"
+alias cduns="cd ~/Uber/go-code/src/code.uber.internal/infra/uns"
+alias cdaut="cd ~/Uber/go-code/src/code.uber.internal/infra/uns/net/traffic/auto-tconfig"
 
 alias gb="git branch"
 alias gbd="git branch -D"
