@@ -258,6 +258,15 @@ Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+Plug 'folke/lsp-colors.nvim'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+
 call plug#end()
 
 filetype plugin indent on     " required!
@@ -599,3 +608,6 @@ colors zenburn
 
 " let g:go_gopls_enabled= 0
 " let g:go_fmt_command=""
+"
+let $USE_SYSTEM_GO = 1
+

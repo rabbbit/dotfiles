@@ -19,11 +19,11 @@ export UBER_OWNER='pawel@uber.com'
 brew analytics off 2>&1 >/dev/null
 export PATH=/Users/pawel/bin:$PATH
 export PATH=/Users/pawel/go/bin:$PATH
-export PATH=/Users/pawel/go-code/src/code.uber.internal/swn/scripts/:$PATH
-export PATH=/Users/pawel/go-code/config/infra/starlark/scripts/:$PATH
+export PATH=/Users/pawel/Uber/go-code/src/code.uber.internal/swn/scripts/:$PATH
+export PATH=/Users/pawel/Uber/go-code/config/infra/starlark/scripts/:$PATH
 
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 export HISTFILESIZE=100000
 export HISTSIZE=100000
@@ -62,6 +62,7 @@ alias gs="git status"
 alias gst="git status"
 alias gsh="git show"
 alias gr="git rebase"
+alias grm="git rebase origin/main"
 alias gsc="git sparse-checkout"
 
 alias zrf="source ~/dotfiles/.zshrc"

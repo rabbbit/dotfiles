@@ -44,3 +44,5 @@
 	ff = only
 [url "ssh://git@github.com/uber/"]
 	insteadof = https://github.com/uber/
+[core]
+	editor = nvim
