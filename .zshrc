@@ -53,10 +53,12 @@ alias cdmco="cd ~/Uber/go-code/src/code.uber.internal/rpc/muttley-config"
 alias cdobs="cd ~/Uber/go-code/src/code.uber.internal/infra/swn-observer"
 alias cduns="cd ~/Uber/go-code/src/code.uber.internal/infra/uns"
 alias cdaut="cd ~/Uber/go-code/src/code.uber.internal/infra/uns/net/traffic/auto-tconfig"
+alias cdidl="cd ~/Uber/go-code/idl/code.uber.internal/infra/uns"
 
 alias gb="git branch"
 alias gbd="git branch -D"
 alias gco="git checkout"
+alias gcm="git checkout main"
 alias gd="git diff"
 alias gs="git status"
 alias gst="git status"
@@ -95,4 +97,7 @@ alias l='ls -CF'
 alias ggrep='git grep -ni'
 alias sgrep='git sgrep'
 
-export XDG_RUNTIME_DIR="/Users/pawel/tmp"
+# export XDG_RUNTIME_DIR="/Users/pawel/tmp"
+
+# GOPACKAGESDRIVER=$HOME/bin/gopackagesdriver.sh
+# export GOPACKAGESDRIVER
