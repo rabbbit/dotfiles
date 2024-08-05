@@ -46,3 +46,5 @@
 	insteadOf = https://github.com/uber/
 [core]
 	editor = nvim
+[init]
+	defaultBranch = main
