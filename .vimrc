@@ -222,7 +222,7 @@ nnoremap # #zzzv
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-nnoremap <leader><space> :noh<cr>
+" nnoremap <leader><space> :noh<cr>
 
 inoremap jj <ESC>
 
@@ -248,7 +248,7 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
 Plug 'jnurmine/Zenburn'
 Plug 'eiginn/netrw'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'godlygeek/tabular'
 " Plug 'avakhov/vim-yaml'
@@ -263,9 +263,21 @@ Plug 'folke/trouble.nvim'
 Plug 'folke/lsp-colors.nvim'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-buffer',
+" Plug 'hrsh7th/cmp-cmdline',
+Plug 'hrsh7th/cmp-nvim-lsp',
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help',
+Plug 'hrsh7th/cmp-omni',
+Plug 'hrsh7th/cmp-path',
+Plug 'hrsh7th/nvim-cmp',
+Plug 'rafamadriz/friendly-snippets',
+
+Plug 'nvim-telescope/telescope.nvim',
+Plug 'nvim-lua/plenary.nvim',
+" Plug 'nvim-treesitter/nvim-treesitter',
+
+" Plug 'williamboman/mason.nvim',
+" Plug 'williamboman/mason-lspconfig.nvim',
 
 call plug#end()
 
@@ -280,9 +292,9 @@ set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
-nnoremap <space> za
+" nnoremap <space> za
 
-vnoremap <space> zf
+" vnoremap <space> zf
 
 set titleold=""
 set titlestring=VIM:\%F
@@ -301,8 +313,10 @@ endif
 
 if &term =~ '^screen' && exists('$TMUX')
     set mouse+=a
-    " tmux knows the extended mouse mode
-    set ttymouse=xterm2
+	if !has('nvim')
+	  " tmux knows the extended mouse mode
+	  set ttymouse=xterm2
+	endif
     " tmux will send xterm-style keys when xterm-keys is on
     execute "set <xUp>=\e[1;*A"
     execute "set <xDown>=\e[1;*B"
@@ -396,9 +410,9 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_root_markers = ['.ctrlp']
 
 " vimgopathmode for monorepo, I think
-if $GO_BIN_PATH != ""
-   let g:go_bin_path=$GO_BIN_PATH
-endif
+" if $GO_BIN_PATH != ""
+" let g:go_bin_path=$GO_BIN_PATH
+" endif
 
 
 " COC.VIM
