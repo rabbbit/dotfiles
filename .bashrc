@@ -150,5 +150,3 @@ export WORKON_HOME=$HOME/.virtualenvs
 # fi
 # source "$fasd_cache"
 # unset fasd_cache
-
-eval "$(direnv hook bash)"
