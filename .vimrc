@@ -81,7 +81,7 @@ set ruler
 
 set textwidth=120
 set colorcolumn=+1
-highlight ColorColumn guibg=#2d2d2d ctermbg=246
+highlight ColorColumn guibg=#2d2d2d ctermbg=246 ctermfg=238
 
 " don't jump over text-wrapped lines
 " Might want to take a quick look at the documentation for map to see if it should only apply in certain modes
