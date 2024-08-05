@@ -54,6 +54,8 @@ alias cdobs="cd ~/Uber/go-code/src/code.uber.internal/infra/swn-observer"
 alias cduns="cd ~/Uber/go-code/src/code.uber.internal/infra/uns"
 alias cdaut="cd ~/Uber/go-code/src/code.uber.internal/infra/uns/net/traffic/auto-tconfig"
 alias cdidl="cd ~/Uber/go-code/idl/code.uber.internal/infra/uns"
+alias cdswn="cd ~/Uber/go-code/src/code.uber.internal/swn"
+alias cdfa="cd ~/Uber/go-code/src/code.uber.internal/swn/fleet-analyzer"
 
 alias gb="git branch"
 alias gbd="git branch -D"
@@ -70,12 +72,10 @@ alias gsc="git sparse-checkout"
 alias zrf="source ~/dotfiles/.zshrc"
 alias zshrc="vim ~/dotfiles/.zshrc"
 
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-source $HOME/gopathmodeFunc.bash
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -101,3 +101,6 @@ alias sgrep='git sgrep'
 
 # GOPACKAGESDRIVER=$HOME/bin/gopackagesdriver.sh
 # export GOPACKAGESDRIVER
+
+# Created by `pipx` on 2023-05-24 23:25:34
+export PATH="$PATH:/Users/pawel/.local/bin"
