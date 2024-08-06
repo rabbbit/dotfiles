@@ -91,7 +91,67 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-require("trouble").setup {}
+
+local diagnostic_signs = {
+	Error = '🚫',
+	Warn  = '⚠️',
+	Hint  = '💡',
+	Info  = 'ℹ️',
+}
+
+for type, icon in pairs(diagnostic_signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, {
+		text   = icon,
+		texthl = hl,
+		numhl  = hl,
+	})
+end
+
+require("trouble").setup {
+	auto_open = false,
+	auto_close = true,
+	auto_preview = false,
+
+	action_keys = {
+		close = "q",
+		cancel = "<esc>",
+		toggle_preview = "P",
+	},
+
+	-- Non-patched font:
+	fold_open = "▼",
+	fold_closed = "▶",
+	icons = false,
+	padding = false,
+	indent_lines = false,
+	group = true,
+	signs = {
+		error       = diagnostic_signs.Error,
+		warning     = diagnostic_signs.Warn,
+		hint        = diagnostic_signs.Hint,
+		information = diagnostic_signs.Info,
+	},
+	use_lsp_diagnostic_signs = false,
+}
+
+-- Don't use virtual text to display diagnostics.
+-- Signs in the gutter + trouble is enough.
+vim.diagnostic.config({
+	virtual_text = true,
+})
+
+vim.keymap.set('n', '<leader>xx', ':Trouble diagnostics toggle<cr>', {desc = "Diagnostics list"})
+vim.keymap.set('n', '<leader>xl', ':Trouble loclist toggle<cr>', {desc = "Location list"})
+vim.keymap.set('n', '<leader>xq', ':Trouble qflist toggle<cr>', {desc = "Quickfix list"})
+
+vim.keymap.set('n', '<leader>xn', function()
+	vim.diagnostic.goto_next({float = false, wrap = false})
+end, {desc = "Next diagnostic"})
+
+vim.keymap.set('n', '<leader>xp', function()
+	vim.diagnostic.goto_prev({float = false, wrap = false})
+end, {desc = "Previous diagnostic"})
 
 local cmp = require 'cmp'
 local has_copilot, copilot_suggestion = pcall(require, 'copilot.suggestion')
