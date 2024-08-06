@@ -247,6 +247,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
 Plug 'jnurmine/Zenburn'
+" Plug 'phha/zenburn.nvim'
 Plug 'eiginn/netrw'
 " Plug 'davidhalter/jedi-vim'
 Plug 'hynek/vim-python-pep8-indent'
@@ -258,7 +259,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'solarnz/thrift.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'folke/lsp-colors.nvim'
 
@@ -278,6 +278,9 @@ Plug 'nvim-lua/plenary.nvim',
 
 " Plug 'williamboman/mason.nvim',
 " Plug 'williamboman/mason-lspconfig.nvim',
+
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
 
@@ -610,7 +613,7 @@ endif
 
 autocmd BufNewFile,BufRead *.star,*.bzl,*.bazel set filetype=python syntax=python ts=4 shiftwidth=4
 
-set t_Co=256
+" set t_Co=256
 set cursorline cursorcolumn
 let g:zenburn_unified_CursorColumn = 1
 let g:zenburn_high_Contrast=0

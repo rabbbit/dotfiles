@@ -232,4 +232,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         goFormatAndImports(3000)
     end,
 })
+
+require('lualine').setup {
+	options = { 
+		icons_enabled = false,
+		theme ="gruvbox",
+	},
+}
+require'nvim-web-devicons'.setup {}
+
+-- require("zenburn").setup()
+
 EOF
