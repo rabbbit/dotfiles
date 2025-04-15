@@ -4,14 +4,45 @@ source ~/.vimrc
 
 set inccommand=split
 
+if $VIM_PATH != ""
+        let $PATH = $VIM_PATH
+endif
+
 " https://github.com/abhinav/home/blob/master/.config/nvim/init.lua
 lua << EOF
 
 vim.g.mapleader = ' ' -- space is leader
 
+require("lspconfig.configs").ulsp = {
+  default_config = {
+    cmd = { "socat", "-", "tcp:localhost:27883,ignoreeof" },
+    flags = {
+      debounce_text_changes = 1000,
+    },
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
+    filetypes = { "go", "java" },
+    root_dir = function(fname)
+      local result = require("lspconfig.async").run_command({ "git", "rev-parse", "--show-toplevel" })
+      if result and result[1] then
+        return vim.trim(result[1])
+      end
+      return require("lspconfig.util").root_pattern(".git")(fname)
+    end,
+    single_file_support = false,
+    docs = {
+      description = [[
+  uLSP brought to you by the IDE team!
+  By utilizing uLSP in Neovim, you acknowledge that this integration is provided 'as-is' with no warranty, express or implied.
+  We make no guarantees regarding its functionality, performance, or suitability for any purpose, and absolutely no support will be provided.
+  Use at your own risk, and may the code gods have mercy on your soul
+]],
+    },
+  },
+}
+
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-require'lspconfig'.gopls.setup{
-	cmd = {'gopls', '-remote=auto'},
+require'lspconfig'['ulsp'].setup{
+	cmd = {'gopls', '-remote=auto', '-rpc.trace', '-v', '-logfile', '/Users/pawel/gopls.log'},
 		capabilities = lsp_capabilities,
        flags = {
             -- Don't spam LSP with changes. Wait a second between each.
@@ -26,6 +57,7 @@ require'lspconfig'.gopls.setup{
 			shadow = true,
 			unusedparams = true,
 			unusedwrite = true,
+			unusedvariable = true,
 		},
 		codelenses = {
 			gc_details = true,
@@ -122,7 +154,6 @@ require("trouble").setup {
 	-- Non-patched font:
 	fold_open = "▼",
 	fold_closed = "▶",
-	icons = false,
 	padding = false,
 	indent_lines = false,
 	group = true,
@@ -300,7 +331,5 @@ require('lualine').setup {
 	},
 }
 require'nvim-web-devicons'.setup {}
-
--- require("zenburn").setup()
 
 EOF

@@ -130,7 +130,7 @@ noremap <F3> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <leader>tp :set invpaste paste?<CR>
 nmap <F4> <leader>tp
 imap <F4> <C-O><leader>tp
-set pastetoggle=<F4>
+" set pastetoggle=<F4>
 
 " buffers - show with F5
 noremap <F5> :ls!<CR>
@@ -387,7 +387,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " brew cask install font-droidsansmono-nerd-font-mono
 " manually update terminal font, the below doesn't work
 "
-set encoding=UTF-8
+" set encoding=UTF-8
 set guifont=DroidSansMono_Nerd_Font_Mono:h11
 
 

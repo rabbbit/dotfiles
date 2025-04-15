@@ -111,12 +111,6 @@ HISTTIMEFORMAT='%F %T '
 
 alias homeconfig='git --git-dir=$HOME/.homeconfig.git/ --work-tree=$HOME'
 
-
-# make SQLPLUS load default configs on start
-export SQLPATH=~/.sqlplus/
-#oracle default locale
-export NLS_LANG=.UTF8
-
 # some functions found over the internet
 function lt() { ls -ltrsa "$@" | tail; }
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
